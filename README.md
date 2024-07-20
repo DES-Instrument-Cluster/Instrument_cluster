@@ -17,3 +17,6 @@ An instrument cluster, also known as a dashboard cluster or gauge cluster, is a 
 ## Conclusion
 
 ## Contributors
+
+## Git Commit Convention
+https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13
