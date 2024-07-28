@@ -1,8 +1,11 @@
 #!/bin/bash
 
+# Please alternate RASPBERRY_PI_HOST value when the ip adress of Raspberry Pi is changed
+
 # Variables
 DOCKER_IMAGE_NAME="qt-app-builder"
 DOCKER_CONTAINER_NAME="qt-app-build-container"
+BUILD_DIR="/project/build"
 HOST_COPY_DIR="."
 RASPBERRY_PI_USER="koserjinda"
 RASPBERRY_PI_HOST="192.168.86.38"
@@ -12,11 +15,11 @@ QT_APP_NAME="InstrumentCluster"
 echo "Building the Docker container..."
 docker build -t $DOCKER_IMAGE_NAME .
 
-echo "Running the Docker container to build the Qt application..."
+echo "Running the Docker container..."
 docker run --name $DOCKER_CONTAINER_NAME $DOCKER_IMAGE_NAME
 
 echo "Copying the built application to the host machine..."
-docker cp $DOCKER_CONTAINER_NAME:$BUILD_DIR $HOST_COPY_DIR
+docker cp $DOCKER_CONTAINER_NAME:$BUILD_DIR/$QT_APP_NAME $HOST_COPY_DIR
 
 echo "Removing the Docker container..."
 docker rm $DOCKER_CONTAINER_NAME
@@ -27,4 +30,4 @@ scp -r $HOST_COPY_DIR/$QT_APP_NAME $RASPBERRY_PI_USER@$RASPBERRY_PI_HOST:$RASPBE
 echo "Removing executable file from host..."
 rm $HOST_COPY_DIR/$QT_APP_NAME
 
-echo "Deployment completed successfully!"
+echo "Done"
