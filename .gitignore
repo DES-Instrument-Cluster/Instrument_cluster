@@ -30,6 +30,12 @@
 *.exe
 *.out
 *.app
+InstrumentCluster
 
+# build
 build/
 *.user
+
+# etc
+.DS_Store
+
