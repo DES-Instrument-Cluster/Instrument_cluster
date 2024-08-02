@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
     libqt5multimedia5 \
     libqt5multimediawidgets5 \
     libqt5x11extras5-dev \
+	libqt5serialbus5-dev \
     libegl1-mesa-dev \
     libgles2-mesa-dev \
     libgl1-mesa-dev \
