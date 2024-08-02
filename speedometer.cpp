@@ -1,6 +1,7 @@
 #include "speedometer.h"
 
 #include <QTimer>
+#include <QDebug>
 
 Speedometer::Speedometer(QWidget *parent)
     : QWidget(parent), speed(0)
@@ -18,6 +19,7 @@ double Speedometer::getSpeed() const
 
 void Speedometer::setSpeed(double speed)
 {
+    qDebug() << "Speed set to: " << speed;
     this->speed = speed;
     this->repaint();
 }
@@ -107,9 +109,11 @@ void Speedometer::drawSpeedText(QPainter *painter)
     QFont font;
 
     font.setItalic(true);
+    font.setPointSize(10);
     painter->setFont(font);
     painter->drawText(20, 35, 30, 15, Qt::AlignCenter, QString("cm/s"));
-    font.setPointSize(20);
+    font.setPointSize(15);
+    font.setBold(true);
     painter->setFont(font);
     painter->drawText(-20, 30, 40, 20, Qt::AlignCenter,
                       QString::number(static_cast<int>(this->speed)));

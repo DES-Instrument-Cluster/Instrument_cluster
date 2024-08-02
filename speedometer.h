@@ -20,7 +20,7 @@ protected:
 private:
     double	speed;
 
-    static const int START_ANGLE = 240;
+    static constexpr const double START_ANGLE = 240.0;
 
     void	drawBackground(QPainter *painter);
     void	drawScale(QPainter *painter);
