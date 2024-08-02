@@ -1,12 +1,12 @@
 #include "mainwindow.h"
 #include "speedometer.h"
+#include "canreceiver.h"
 #include "./ui_mainwindow.h"
-
-#include <QTimer>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , canReceiver(new CanReceiver(this))
 {
     ui->setupUi(this);
     this->setWindowTitle("Instrument Cluster");
@@ -16,9 +16,9 @@ MainWindow::MainWindow(QWidget *parent)
     this->speedometer = new Speedometer(this);
     setCentralWidget(this->speedometer);
 
-    QTimer *timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, &MainWindow::testSpeedometer);
-    timer->start(15);
+    connect(canReceiver, &CanReceiver::speedUpdated, this, &MainWindow::updateSpeed);
+
+    canReceiver->startReceiving("can1");
 }
 
 MainWindow::~MainWindow()
@@ -26,15 +26,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::testSpeedometer()
+void MainWindow::updateSpeed(double speed)
 {
-    double currSpeed = this->speedometer->getSpeed();
-    if (currSpeed < 240)
-    {
-        this->speedometer->setSpeed(currSpeed + 0.2);
-    }
-    else
-    {
-        this->speedometer->setSpeed(0);
-    }
+    this->speedometer->setSpeed(speed);
 }

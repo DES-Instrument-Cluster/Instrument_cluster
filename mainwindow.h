@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "speedometer.h"
+#include "canreceiver.h"
 
 #include <QMainWindow>
 
@@ -20,12 +21,12 @@ public:
     ~MainWindow();
 
 private slots:
-    void	testSpeedometer();
+    void updateSpeed(double speed);
 
 private:
     Ui::MainWindow	*ui;
     Speedometer		*speedometer;
-
+    CanReceiver		*canReceiver;
 };
 
 #endif // MAINWINDOW_H
