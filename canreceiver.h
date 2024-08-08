@@ -5,6 +5,8 @@
 #include <QCanBusDevice>
 #include <QCanBusFrame>
 
+#include "emafilter.h"
+
 class CanReceiver : public QObject
 {
     Q_OBJECT
@@ -23,6 +25,7 @@ private slots:
 private:
     QCanBusDevice	*canDevice;
     const int		expectedId;
+    EmaFilter		emaFilter;
 };
 
 #endif // CANRECEIVER_H
