@@ -17,6 +17,33 @@ An instrument cluster, also known as a dashboard cluster or gauge cluster, is a 
 
 ## Software Design
 
+## Configuration
+### Display - WaveShare 7.9inch SDI LCD
+After we have written RaspberryPi OS (Debian Bookwarm, 64bit) to a sd card, we have added lines below to 'config.txt' at the root of the sd card file system. And ejected the sd card and boot up our Raspberry Pi, and we were able to see the display working as expected.
+```
+(...)
+# WaveShare 7.9inch LCD
+dtoverlay=vc4-kms-v3d
+dtoverlay=vc4-kms-dsi-waveshare-panel,7_9_inch
+```
+### SeeedStudio 2-CH CAN HAT for Raspberry Pi
+[Followed instructions on here](https://wiki.seeedstudio.com/2-Channel-CAN-BUS-FD-Shield-for-Raspberry-Pi/)
+
+### Auto start Instrument Cluster at booting
+```
+# /etc/xdg/autostart/InstrumentCluster.desktop
+
+[Desktop Entry]
+Type=Application
+Exec=/home/pi/InstrumentCluster
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=InstrumentCluster
+Name=InstrumentCluster
+Comment[en_US]=Start Instrument Cluster at startup
+Comment=Start Instrument Cluster at startup
+```
 ## Result
 
 ## Conclusion
