@@ -55,15 +55,15 @@ void Speedometer::drawScale(QPainter *painter)
     {
         if (i % 40 == 0)
         {
-            drawScaleMark(painter, i, 2, -120, -140, true);
+            drawScaleMark(painter, i, 2, -125, -140, true);
         }
         else if (i % 20 == 0)
         {
-            drawScaleMark(painter, i, 1, -125, -140, false);
+            drawScaleMark(painter, i, 1, -130, -140, false);
         }
         else
         {
-            drawScaleMark(painter, i, 1, -130, -140, false);
+            drawScaleMark(painter, i, 1, -135, -140, false);
         }
     }
 }
