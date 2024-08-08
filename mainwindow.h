@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include "speedometer.h"
-#include "canreceiver.h"
+#include "canreceiverthread.h"
 
 #include <QMainWindow>
 
@@ -24,9 +24,9 @@ private slots:
     void updateSpeed(double speed);
 
 private:
-    Ui::MainWindow	*ui;
-    Speedometer		*speedometer;
-    CanReceiver		*canReceiver;
+    Ui::MainWindow		*ui;
+    Speedometer			*speedometer;
+    CanReceiverThread	*canReceiverThread;
 
     const int	SCREEN_WIDTH = 1280;
     const int	SCREEN_HEIGHT = 400;
