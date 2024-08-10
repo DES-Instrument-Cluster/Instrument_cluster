@@ -26,6 +26,8 @@ private:
     QCanBusDevice	*canDevice;
     const int		expectedId;
     EmaFilter		emaFilter;
+
+    const float		SCALE = 10000.0;
 };
 
 #endif // CANRECEIVER_H

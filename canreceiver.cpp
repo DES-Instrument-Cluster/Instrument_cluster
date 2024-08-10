@@ -77,9 +77,9 @@ void CanReceiver::processReceivedFrames()
 
         if (payload.size() == sizeof(float))
         {
-            float speed = 0.0;
-            memcpy(&speed, payload.constData(), sizeof(float));
-            speed = this->emaFilter.calculateFilteredOutput(speed);
+            unsigned int scaledSpeed = 0;
+            memcpy(&scaledSpeed, payload.constData(), sizeof(unsigned int));
+            float speed = this->emaFilter.calculateFilteredOutput((float)(scaledSpeed / this->SCALE));
             if (speed < 1)
             {
                 this->emaFilter.setEma(0.0);
