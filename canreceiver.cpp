@@ -62,7 +62,7 @@ void CanReceiver::processReceivedFrames()
         {
             qDebug() << "Invalid CAN frame received";
             qDebug() << "Frame: " << frame.toString();
-            // continue;
+            continue;
         }
 
         const int messageId = frame.frameId();
@@ -70,7 +70,7 @@ void CanReceiver::processReceivedFrames()
 
         if (messageId != this->expectedId)
         {
-            // continue;
+            continue;
         }
 
         QByteArray payload = frame.payload();
