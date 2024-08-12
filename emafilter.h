@@ -9,12 +9,13 @@ public:
 
     float	getEma() const;
     void	setEma(float value);
+    void    setAlpha(float value);
+    float   calculateFilteredOutput(float value);
 
-    float	calculateFilteredOutput(float value);
 
 private:
-    const float	alpha;
-    const float	oneMinusAlpha;
+    float	alpha;
+    float	oneMinusAlpha;
 
     float	ema;
 };

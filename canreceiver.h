@@ -15,6 +15,7 @@ public:
     ~CanReceiver();
 
     void startReceiving(const QString &interfaceName);
+    EmaFilter& getEmaFilter();  // Метод для доступа к фильтру
 
 signals:
     void speedUpdated(double speed);

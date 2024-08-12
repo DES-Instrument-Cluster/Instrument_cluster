@@ -89,3 +89,8 @@ void CanReceiver::processReceivedFrames()
         }
     }
 }
+
+EmaFilter& CanReceiver::getEmaFilter()
+{
+    return this->emaFilter;
+}
