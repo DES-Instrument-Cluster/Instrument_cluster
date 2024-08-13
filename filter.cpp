@@ -9,14 +9,20 @@ Filter::Filter(float emaAlpha, int smaWindowSize)
     , smaSum(0.0f)
 {}
 
-float Filter::calculateFilteredOutput(float value)
+float Filter::calculateOutput(float value)
 {
     float filteredValue;
 
+    // always store calculated values whether the filter is on or not
+    // to not make the speedometer needle jumps when we switch the filter while driving
     filteredValue = this->calculateEma(value);
     filteredValue = this->calculateSma(filteredValue);
 
-    return filteredValue;
+    if (this->isFilterOn)
+    {
+        return filteredValue;
+    }
+    return value;
 }
 
 bool Filter::getIsFilterOn()
@@ -29,20 +35,9 @@ void Filter::setIsFilterOn(bool inOn)
     this->isFilterOn = inOn;
 }
 
-void Filter::setEmaAlpha(float alpha)
-{
-    this->emaAlpha = alpha;
-    this->emaOneMinusAlpha = 1.0f - alpha;
-}
-
 void Filter::setEma(float ema)
 {
     this->ema = ema;
-}
-
-void Filter::setSmaWindowSize(int size)
-{
-    this->smaWindowSize = size;
 }
 
 float Filter::calculateEma(float value)

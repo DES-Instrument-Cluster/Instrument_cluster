@@ -79,15 +79,10 @@ void CanReceiver::processReceivedFrames()
             unsigned int scaledSpeed = 0;
             memcpy(&scaledSpeed, payload.constData(), sizeof(unsigned int));
 
-            float speed = (float)(scaledSpeed) / this->SCALE;
-
-            if (this->filter.getIsFilterOn())
+            float speed = this->filter.calculateOutput((float)(scaledSpeed / this->SCALE));
+            if (speed < 1)
             {
-                speed = this->filter.calculateFilteredOutput((float)(scaledSpeed / this->SCALE));
-               if (speed < 1)
-                {
-                    this->filter.setEma(0.0);
-                }
+                this->filter.setEma(0.0);
             }
 
             qDebug() << "Speed (cm/s): " << speed;
