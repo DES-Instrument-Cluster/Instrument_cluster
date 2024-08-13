@@ -8,24 +8,22 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
     , canReceiverThread(new CanReceiverThread(this))
 {
-    isBlack = false;
-    ui->setupUi(this);
+    this->ui->setupUi(this);
     this->setWindowTitle("Instrument Cluster");
     this->setFixedSize(SCREEN_WIDTH, SCREEN_HEIGHT);
     this->setStyleSheet("background-color: black");
 
     this->speedometer = new Speedometer(this);
     setCentralWidget(this->speedometer);
-    flatterFilterButton = new QPushButton("FlatterFilter", this);
-    flatterFilterButton->setGeometry(QRect(QPoint(100, 100), QSize(200, 50)));
 
-    // Устанавливаем начальный стиль кнопки: серый фон и белый текст
-    flatterFilterButton->setStyleSheet("background-color: black; color: white;  border: 1px solid white;");
+    this->filterOnOffButton = new QPushButton(this);
+    this->filterOnOffButton->setGeometry(QRect(QPoint(25, 25), QSize(120, 40)));
+    this->setFilterButtonOffStyle();
 
-    // Подключаем сигнал нажатия кнопки к слоту
-    connect(flatterFilterButton
+    connect(this->filterOnOffButton
             , &QPushButton::clicked
-            , this, &MainWindow::onFlatterFilterButtonClicked);
+            , this
+            , &MainWindow::onFilterOnOffButtonClicked);
 
 
     connect(this->canReceiverThread->getCanReceiver()
@@ -46,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    delete ui;
+    delete this->ui;
 }
 
 void MainWindow::updateSpeed(double speed)
@@ -54,16 +52,27 @@ void MainWindow::updateSpeed(double speed)
     this->speedometer->setSpeed(speed);
 }
 
-void MainWindow::onFlatterFilterButtonClicked() {
-    if (isBlack) {
-        flatterFilterButton->setStyleSheet("background-color: black; color: white; border: 1px solid white;");  // Изменяем цвет на серый с белой рамкой
-         // Включаем фильтр с параметром 1
-        canReceiverThread->getCanReceiver()->getEmaFilter().setAlpha(1.0);
+void MainWindow::onFilterOnOffButtonClicked()
+{
+    Filter& filter = this->canReceiverThread->getCanReceiver()->getFilter();
 
+    if (filter.getIsFilterOn()) {
+        this->setFilterButtonOffStyle();
+        filter.setIsFilterOn(false);
     } else {
-        flatterFilterButton->setStyleSheet("background-color: green; color: white; border: 2px solid white;"); // Изменяем цвет на зеленый с белой рамкой
-        // Включаем фильтр без дополнительных параметров
-        canReceiverThread->getCanReceiver()->getEmaFilter().setAlpha(0.25);
+        this->setFilterButtonOnStyle();
+        filter.setIsFilterOn(true);
     }
-    isBlack = !isBlack;  // Переключаем состояние переменной
+}
+
+void MainWindow::setFilterButtonOnStyle()
+{
+    this->filterOnOffButton->setText("Filter ON");
+    this->filterOnOffButton->setStyleSheet("background-color: white; color: black; border-radius: 5px;");
+}
+
+void MainWindow::setFilterButtonOffStyle()
+{
+    this->filterOnOffButton->setText("Filter OFF");
+    this->filterOnOffButton->setStyleSheet("background-color: grey; color: white; border-radius: 5px;");
 }
