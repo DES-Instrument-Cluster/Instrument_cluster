@@ -5,7 +5,7 @@
 #include <QCanBusDevice>
 #include <QCanBusFrame>
 
-#include "emafilter.h"
+#include "filter.h"
 
 class CanReceiver : public QObject
 {
@@ -15,7 +15,7 @@ public:
     ~CanReceiver();
 
     void startReceiving(const QString &interfaceName);
-    EmaFilter& getEmaFilter();  // Метод для доступа к фильтру
+    Filter& getFilter();  // Метод для доступа к фильтру
 
 signals:
     void speedUpdated(double speed);
@@ -26,7 +26,7 @@ private slots:
 private:
     QCanBusDevice	*canDevice;
     const int		expectedId;
-    EmaFilter		emaFilter;
+    Filter			filter;
 
     const float		SCALE = 10000.0;
 };
