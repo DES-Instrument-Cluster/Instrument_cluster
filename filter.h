@@ -7,12 +7,11 @@ class Filter {
 public:
     Filter(float emaAlpha, int smaWindowSize);
 
-    float	calculateFilteredOutput(float value);
+    float	calculateOutput(float value);
 
     bool	getIsFilterOn();
 
     void	setIsFilterOn(bool isOn);
-    void	setEmaAlpha(float alpha);
     void	setEma(float ema);
     void	setSmaWindowSize(int size);
 
