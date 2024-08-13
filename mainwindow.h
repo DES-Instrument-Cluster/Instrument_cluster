@@ -5,7 +5,6 @@
 #include "canreceiverthread.h"
 #include <QPushButton>
 #include <QWidget>
-#include "emafilter.h"
 
 #include <QMainWindow>
 
@@ -25,18 +24,19 @@ public:
 
 private slots:
     void updateSpeed(double speed);
-    void onFlatterFilterButtonClicked();
+    void onFilterOnOffButtonClicked();
 
 private:
     Ui::MainWindow		*ui;
     Speedometer			*speedometer;
     CanReceiverThread	*canReceiverThread;
-    QPushButton *flatterFilterButton;
-    bool isBlack;
+    QPushButton			*filterOnOffButton;
 
     const int	SCREEN_WIDTH = 1280;
     const int	SCREEN_HEIGHT = 400;
 
+    void	setFilterButtonOnStyle();
+    void	setFilterButtonOffStyle();
 };
 
 #endif // MAINWINDOW_H
