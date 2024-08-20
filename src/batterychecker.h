@@ -16,7 +16,7 @@ public:
 
     void monitor();
 
-    int getBatteryLevel() const;
+    Q_INVOKABLE int getBatteryLevel() const;
 
 signals:
     void batteryLevelChanged();
