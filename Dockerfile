@@ -19,6 +19,11 @@ RUN apt-get update && apt-get install -y \
     libgles2-mesa-dev \
     libgl1-mesa-dev \
     libglu1-mesa-dev \
+	qml-module-qtquick-controls2 \
+    qtquickcontrols2-5-dev \
+    qml-module-qtquick2 \
+    qml-module-qtquick-layouts \
+    qml-module-qtquick-window2 \
     qtmultimedia5-dev \
     qtbase5-private-dev \
     cmake \
