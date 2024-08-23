@@ -10,11 +10,11 @@ ApplicationWindow {
     title: "Instrument Cluster"
 
     Component.onCompleted: {
-        if (!canReceiver) {
-            console.error("Failed to load CanReceiver");
+        if (!speedUpdateManager) {
+            console.error("Failed to load SpeedUpdateManager");
         }
 
-        if (!canReceiver.getFilter()) {
+        if (!speedUpdateManager.getFilter()) {
             console.error("Failed to load Filter");
         }
     }
@@ -31,7 +31,7 @@ ApplicationWindow {
         }
 
         Connections {
-            target: canReceiver
+            target: speedUpdateManager
             onSpeedUpdated: speed => {
                 speedometer.speed = speed
             }
@@ -62,13 +62,13 @@ ApplicationWindow {
                 radius: 5
             }
             onClicked: {
-                if (canReceiver.getFilter().getIsFilterOn()) {
-                    canReceiver.getFilter().setIsFilterOn(false);
+                if (speedUpdateManager.getFilter().getIsFilterOn()) {
+                    speedUpdateManager.getFilter().setIsFilterOn(false);
                     filterOnOffButton.text = "Filter OFF";
                     filterOnOffButton.background.color = "grey";
                     filterOnOffButton.font.color = "white";
                 } else {
-                    canReceiver.getFilter().setIsFilterOn(true);
+                    speedUpdateManager.getFilter().setIsFilterOn(true);
                     filterOnOffButton.text = "Filter ON";
                     filterOnOffButton.background.color = "white";
                     filterOnOffButton.font.color = "black";

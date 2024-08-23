@@ -3,31 +3,39 @@
 #include <QQmlContext>
 #include <QQuickStyle>
 
-#include "canreceiver.h"
+#include "speedupdatemanager.h"
 #include "batterychecker.h"
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication app(argc, argv);
+    try
+    {
+        QGuiApplication app(argc, argv);
+        QQuickStyle::setStyle("Material");
+        QQmlApplicationEngine engine;
+        BatteryChecker batteryChecker;
+        engine.rootContext()->setContextProperty("batteryChecker", &batteryChecker);
+        qmlRegisterType<BatteryChecker>("InstrumentCluster", 1, 0, "BatteryChecker");
+        batteryChecker.monitor();
 
-    QQuickStyle::setStyle("Material");
+        SpeedUpdateManager speedUpdateManager;
 
-    QQmlApplicationEngine engine;
+        engine.rootContext()->setContextProperty("speedUpdateManager", &speedUpdateManager);
+        qmlRegisterType<SpeedUpdateManager>("InstrumentCluster", 1, 0, "SpeedUpdateManager");
 
-    BatteryChecker batteryChecker;
-    engine.rootContext()->setContextProperty("batteryChecker", &batteryChecker);
-    qmlRegisterType<BatteryChecker>("InstrumentCluster", 1, 0, "BatteryChecker");
-    batteryChecker.monitor();
+        speedUpdateManager.start();
 
-    CanReceiver canReceiver;
-    engine.rootContext()->setContextProperty("canReceiver", &canReceiver);
-    qmlRegisterType<CanReceiver>("InstrumentCluster", 1, 0, "CanReceiver");
+        engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+        if (engine.rootObjects().isEmpty())
+        {
+            return -1;
+        }
 
-    canReceiver.startReceiving("can1");
-
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-    if (engine.rootObjects().isEmpty())
-        return -1;
-
-    return app.exec();
+        return app.exec();
+    }
+    catch (std::exception& e)
+    {
+        qDebug() << e.what() << '\n';
+        return 1;
+    }
 }
