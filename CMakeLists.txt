@@ -24,6 +24,8 @@ set(PROJECT_SOURCES
         src/filter.h
         src/batterychecker.cpp
         src/batterychecker.h
+        src/speedupdatemanager.h
+        src/speedupdatemanager.cpp
         src/resources.qrc
         src/main.qml
         src/Speedometer.qml
