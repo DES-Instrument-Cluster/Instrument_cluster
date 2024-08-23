@@ -4,33 +4,35 @@
 #include <QObject>
 #include <QCanBusDevice>
 #include <QCanBusFrame>
-
-#include "filter.h"
+#include <queue>
 
 class CanReceiver : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(Filter* filter READ getFilter CONSTANT)
 
 public:
-    explicit CanReceiver(QObject *parent = nullptr);
+    explicit CanReceiver(QObject *parent = nullptr
+                         , int expectedId = 0x0
+                         , const QString& interfaceName = "");
     ~CanReceiver();
 
-    Q_INVOKABLE void startReceiving(const QString &interfaceName);
-    Q_INVOKABLE Filter* getFilter();
+    void createCanDevice();
+    void processReceivedFrames();
+
+    QCanBusDevice*	getCanDevice() const;
+
+    QByteArray getFrontPayload();
+    bool isPayloadQueueEmpty() const;
 
 signals:
     void speedUpdated(double speed);
 
-private slots:
-    void processReceivedFrames();
-
 private:
-    QCanBusDevice	*canDevice;
-    const int		expectedId;
-    Filter			*filter;
+    QCanBusDevice *canDevice;
+    const int expectedId;
+    const QString interfaceName;
+    std::queue<QByteArray> payloadQueue;
 
-    const float		SCALE = 10000.0;
 };
 
 #endif // CANRECEIVER_H
