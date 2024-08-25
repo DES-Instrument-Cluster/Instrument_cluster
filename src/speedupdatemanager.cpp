@@ -46,7 +46,7 @@ void SpeedUpdateManager::processSpeedData()
             unsigned int scaledSpeed = 0;
             memcpy(&scaledSpeed, payload.constData(), sizeof(uint32_t));
 
-            float speed = this->filter->calculateOutput((float)(scaledSpeed / this->SCALE_FACTOR));
+            float speed = this->filter->calculateOutput(static_cast<float>(scaledSpeed / this->SCALE_FACTOR));
             if (speed < 1)
             {
                 this->filter->setEma(0.0);
