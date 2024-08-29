@@ -9,7 +9,8 @@ An instrument cluster, also known as a dashboard cluster or gauge cluster, is a 
 - [Speed sensor](https://github.com/SEA-ME-DES-01-Instrument-Cluster/Instrument_cluster/wiki/Specifications-and-usage-of-speed-sensors-compatible-with-Arduino)
 - [Qt framework its tools for GUI](https://github.com/SEA-ME-DES-01-Instrument-Cluster/Instrument_cluster/wiki/Basics-of-the-Qt-framework-and-its-tools-for-developing-embedded-GUIs)
 - [What is Bare Metal?](https://github.com/SEA-ME-DES-01-Instrument-Cluster/Instrument_cluster/wiki/What-is-Bare-Metal%3F#what-is-bare-metal)
-You can also find those topics in our Wiki.
+
+You can also find those topics on our Wiki.
 
 ## System Architecture
 
@@ -24,12 +25,12 @@ You can also find those topics in our Wiki.
 - [WaveShare 7.9inch DSI LCD](https://www.waveshare.com/wiki/7.9inch_DSI_LCD)
 
 ### Software
-Application: C++(Qt framework)
-Firmware(for Arduino): C
-Host OS(for development): Ubuntu 20.04
-Raspberry Pi: Rasbian Desktop 64bit
-IDE: Qt Creator, Arduino IDE
-Version control: Git
+- Main application: C++(Qt framework)
+- Firmware(for Arduino): C
+- Host OS(for development): Ubuntu 20.04
+- Raspberry Pi: Rasbian Desktop 64bit
+- IDE: Qt Creator, Arduino IDE
+- Version control: Git
 
 ## Configuration
 ### Display - WaveShare 7.9inch DSI LCD
