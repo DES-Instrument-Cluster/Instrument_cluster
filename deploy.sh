@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Note that this will only work in ARM64 architecture host(e.g. Apple Silicon Mac)
 # Please alternate RASPBERRY_PI_HOST value when the ip adress of Raspberry Pi is changed
 
 # Variables
