@@ -15,7 +15,6 @@ An instrument cluster, also known as a dashboard cluster or gauge cluster, is a 
 
 ## System Architecture
 
-## Software Design
 
 ## Configuration
 ### Display - WaveShare 7.9inch SDI LCD
