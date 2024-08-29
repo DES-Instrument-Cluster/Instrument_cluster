@@ -15,7 +15,7 @@ You can also find those topics on our Wiki.
 ## System Architecture
 <img src="./diagram.svg">
 
-## Components
+## Components and Environment
 ### Hardware
 - [WaveShare JetRacer AI Kit)](https://www.waveshare.com/wiki/JetRacer_AI_Kit)
 - [MH Infrared Speed Sensor Module (FC-03)](https://einstronic.com/product/infrared-speed-sensor-module/)
