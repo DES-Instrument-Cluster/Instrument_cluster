@@ -15,8 +15,9 @@ Item {
             id: batteryFill
             width: batteryChecker.batteryLevel / 100 * (parent.width - 6)
             height: parent.height - 6
-            color: batteryChecker.batteryLevel > 20 ? "green" : "red"
-            anchors.centerIn: parent
+            color: batteryChecker.batteryLevel > 20 ? "lime" : "orangered"
+            anchors.left: parent.left
+            anchors.verticalCenter: parent.verticalCenter
             anchors.margins: 3
         }
 
@@ -36,5 +37,4 @@ Item {
         color: "white"
         font.bold: true
     }
-
 }
