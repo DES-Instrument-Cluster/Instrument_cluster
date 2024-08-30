@@ -37,6 +37,7 @@ set(PROJECT_SOURCES
         src/qml/main.qml
         src/qml/Speedometer.qml
         src/qml/FilterButtons.qml
+        src/qml/BatteryIndicator.qml
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
