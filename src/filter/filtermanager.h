@@ -21,7 +21,7 @@ public:
     };
     Q_ENUM(FilterType)
 
-    float filter(float value);
+    double filter(double value);
     Q_INVOKABLE void addFilter(FilterType type);
     Q_INVOKABLE void removeFilter(FilterType type);
     void reset();

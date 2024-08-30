@@ -24,7 +24,7 @@ private:
     CanReceiver* canReceiver;
     FilterManager* filterManager;
 
-    const float	SCALE_FACTOR = 10000.0;
+    const double SCALE_FACTOR = 10000.0;
 
     void processSpeedData();
 

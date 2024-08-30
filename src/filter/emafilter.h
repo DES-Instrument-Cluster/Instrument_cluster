@@ -6,19 +6,19 @@
 class EmaFilter : public IFilter
 {
 public:
-    explicit EmaFilter(QObject* parent, float alpha = 0.2);
+    explicit EmaFilter(QObject* parent, double alpha = 0.2);
     ~EmaFilter();
 
-    float getEma() const;
-    void setEma(float value);
-    void setAlpha(float value);
-    float calculateFilteredOutput(float value) override;
+    double getEma() const;
+    void setEma(double value);
+    void setAlpha(double value);
+    double calculateFilteredOutput(double value) override;
     void reset() override;
 
 private:
-    float alpha;
-    float oneMinusAlpha;
-    float ema;
+    double alpha;
+    double oneMinusAlpha;
+    double ema;
 };
 
 #endif // EMAFILTER_H

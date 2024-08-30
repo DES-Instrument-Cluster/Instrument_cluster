@@ -16,15 +16,15 @@ public:
     ~SmaFilter();
 
     void setFilterParameters(int length);
-    float calculateFilteredOutput(float value) override;
+    double calculateFilteredOutput(double value) override;
     void reset() override;
 
 private:
     int windowSize;
-    std::array<float, MAX_BUFFER_SIZE> buffer;
+    std::array<double, MAX_BUFFER_SIZE> buffer;
     int currentIndex;
     int count;
-    int sum;
+    double sum;
 };
 
 #endif // SMAFILTER_H

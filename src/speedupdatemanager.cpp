@@ -48,7 +48,7 @@ void SpeedUpdateManager::processSpeedData()
             stream.setByteOrder(QDataStream::LittleEndian);
             stream >> scaledSpeed;
 
-            float speed = this->filterManager->filter(static_cast<float>(scaledSpeed / this->SCALE_FACTOR));
+            double speed = this->filterManager->filter(static_cast<double>(scaledSpeed) / this->SCALE_FACTOR);
             if (speed < 1.0f)
             {
                 this->filterManager->reset();

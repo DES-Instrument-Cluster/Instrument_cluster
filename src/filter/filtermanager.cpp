@@ -14,9 +14,9 @@ FilterManager::FilterManager(QObject *parent)
 FilterManager::~FilterManager()
 {}
 
-float FilterManager::filter(float value)
+double FilterManager::filter(double value)
 {
-    float filteredValue = value;
+    double filteredValue = value;
 
     for (auto filterPtr : this->activeFilters)
     {
