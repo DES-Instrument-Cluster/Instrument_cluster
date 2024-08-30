@@ -10,7 +10,7 @@ public:
     explicit IFilter(QObject *parent = nullptr): QObject(parent) {}
     virtual ~IFilter() {};
 
-    virtual float calculateFilteredOutput(float value) = 0;
+    virtual double calculateFilteredOutput(double value) = 0;
     virtual void reset() = 0;
 };
 

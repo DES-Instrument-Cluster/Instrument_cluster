@@ -21,7 +21,7 @@ void SmaFilter::setFilterParameters(int windowSize)
     reset();
 }
 
-float SmaFilter::calculateFilteredOutput(float value)
+double SmaFilter::calculateFilteredOutput(double value)
 {
     this->sum -= buffer[currentIndex];
     buffer[currentIndex] = value;
@@ -33,7 +33,7 @@ float SmaFilter::calculateFilteredOutput(float value)
         this->count++;
     }
 
-    return static_cast<float>(this->sum) / this->count;
+    return this->sum / this->count;
 }
 
 void SmaFilter::reset()

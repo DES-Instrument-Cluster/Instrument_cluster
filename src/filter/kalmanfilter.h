@@ -7,22 +7,22 @@ class KalmanFilter : public IFilter
 {
 public:
     explicit KalmanFilter(QObject* parent
-                          , float processNoise = 1.0f
-                          , float measurementNoise = 10.0f
-                          , float estimationError = 100.0f);
+                          , double processNoise = 1.0f
+                          , double measurementNoise = 10.0f
+                          , double estimationError = 100.0f);
     ~KalmanFilter();
 
-    void setProcessNoise(float valueP, float valueM, float valueR);
-    float calculateFilteredOutput(float measurement) override;
+    void setProcessNoise(double valueP, double valueM, double valueR);
+    double calculateFilteredOutput(double measurement) override;
     void reset() override;
 
 private:
-    float processNoise;
-    float measurementNoise;
-    float estimationError;
-    float kalmanGain;
-    float currentEstimate;
-    float initialEstimationError;
+    double processNoise;
+    double measurementNoise;
+    double estimationError;
+    double kalmanGain;
+    double currentEstimate;
+    double initialEstimationError;
 };
 
 #endif // KALMANFILTER_H

@@ -1,6 +1,6 @@
 #include "kalmanfilter.h"
 
-KalmanFilter::KalmanFilter(QObject* parent, float processNoise, float measurementNoise, float estimationError)
+KalmanFilter::KalmanFilter(QObject* parent, double processNoise, double measurementNoise, double estimationError)
     : IFilter(parent)
     , processNoise(processNoise)
     , measurementNoise(measurementNoise)
@@ -13,7 +13,7 @@ KalmanFilter::KalmanFilter(QObject* parent, float processNoise, float measuremen
 
 KalmanFilter::~KalmanFilter() {}
 
-void KalmanFilter::setProcessNoise(float valueP, float valueM, float valueR)
+void KalmanFilter::setProcessNoise(double valueP, double valueM, double valueR)
 {
     this->processNoise = valueP;
     this->measurementNoise = valueM;
@@ -21,7 +21,7 @@ void KalmanFilter::setProcessNoise(float valueP, float valueM, float valueR)
     this->initialEstimationError = valueR;
 }
 
-float KalmanFilter::calculateFilteredOutput(float measurement)
+double KalmanFilter::calculateFilteredOutput(double measurement)
 {
     // Estimation step
     this->estimationError += this->processNoise;
