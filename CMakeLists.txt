@@ -22,6 +22,8 @@ set(PROJECT_SOURCES
         src/canreceiver.cpp
         src/batterychecker.cpp
         src/batterychecker.h
+        src/ina219reader.cpp
+        src/ina219reader.h
         src/speedupdatemanager.h
         src/speedupdatemanager.cpp
         src/filter/filtermanager.h
