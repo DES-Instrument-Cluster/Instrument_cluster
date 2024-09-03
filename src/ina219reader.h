@@ -8,14 +8,20 @@ public:
 	~INA219Reader();
 
 	float	readBusVoltage() const;
-    float	readShuntVoltage() const;
+    float	readShuntVoltage() const;\
+	float	amper;
 	float	readCurrent() const;
+    float   readAmper() const;
 private:
 	const char*	I2C_BUS = "/dev/i2c-1";
 
     const int8_t	INA219_ADDRESS = 0x41;
     const int8_t	SHUNT_VOLTAGE_REGISTER = 0x01;
 	const int8_t	BUS_VOLTAGE_REGISTER = 0x02;
+	const int8_t	AMPERAGE_REGISTER = 0x00;
+    float BUS_VOLTAGE_MULTIPLIER = 0.004f;
+    float SHUNT_VOLTAGE_MULTIPLIER = 0.01f;
+    float AMPER_MULTIPLAYER = 0.001f;
 
 	int	fd;
 

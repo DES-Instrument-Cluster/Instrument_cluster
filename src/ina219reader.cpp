@@ -20,7 +20,7 @@ float INA219Reader::readBusVoltage() const
 {
 	this->writeRegisterValueToI2cDevice(BUS_VOLTAGE_REGISTER);
 	int busVoltageRaw = this->readRegisterValueFromI2cDevice();
-	float busVoltage = (busVoltageRaw >> 3) * 0.004f; // V
+	float busVoltage = (busVoltageRaw >> 3) * BUS_VOLTAGE_MULTIPLIER; // V
 	return busVoltage;
 }
 
@@ -28,8 +28,24 @@ float INA219Reader::readShuntVoltage() const
 {
     this->writeRegisterValueToI2cDevice(SHUNT_VOLTAGE_REGISTER);
     int16_t shuntVoltageRaw = this->readRegisterValueFromI2cDevice();
-    float shuntVoltage = shuntVoltageRaw * 0.01f; // mV
+    float shuntVoltage = shuntVoltageRaw * SHUNT_VOLTAGE_MULTIPLIER; // mV
     return shuntVoltage;
+}
+
+// Метод для чтения ампер в классе INA219Reader
+// The method for reading amperage in the INA219Reader class
+float INA219Reader::readAmper() const
+{
+    // Чтение тока через I2C  
+    // Reading current via I2C 
+    
+    this->writeRegisterValueToI2cDevice(AMPERAGE_REGISTER);
+    int16_t amperRaw = this->readRegisterValueFromI2cDevice();
+    float amper = amperRaw * AMPER_MULTIPLAYER; // mA
+    return amper;
+
+    // Возвращаем значение ампеража
+    // Return the amperage value
 }
 
 void INA219Reader::openI2cBus()
@@ -83,3 +99,4 @@ const char* INA219Reader::ReadRegisterValueFromI2cDeviceFailException::what() co
 {
 	return "Failed to read from I2C register.";
 }
+
