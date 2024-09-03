@@ -18,7 +18,7 @@ private:
     const int8_t	INA219_ADDRESS = 0x41;
     const int8_t	SHUNT_VOLTAGE_REGISTER = 0x01;
 	const int8_t	BUS_VOLTAGE_REGISTER = 0x02;
-	const int8_t	AMPERAGE_REGISTER = 0x00;
+    const int8_t	AMPERAGE_REGISTER = 0x04;
     float BUS_VOLTAGE_MULTIPLIER = 0.004f;
     float SHUNT_VOLTAGE_MULTIPLIER = 0.01f;
     float AMPER_MULTIPLAYER = 0.001f;
