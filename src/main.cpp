@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
         qmlRegisterType<SpeedUpdateManager>("InstrumentCluster", 1, 0, "SpeedUpdateManager");
 
         engine.rootContext()->setContextProperty("filterManager", speedUpdateManager.getFilterManager());
-        qmlRegisterType<FilterManager>("InstrumentCluster", 1, 0, "SpeedUpdateManager");
+        qmlRegisterType<FilterManager>("InstrumentCluster", 1, 0, "FilterManager");
 
         speedUpdateManager.start();
 
