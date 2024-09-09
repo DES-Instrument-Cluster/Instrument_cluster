@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
         BatteryChecker batteryChecker;
         engine.rootContext()->setContextProperty("batteryChecker", &batteryChecker);
         qmlRegisterType<BatteryChecker>("InstrumentCluster", 1, 0, "BatteryChecker");
-        batteryChecker.monitor();
+        batteryChecker.startMonitoring();
 
         SpeedUpdateManager speedUpdateManager;
 
