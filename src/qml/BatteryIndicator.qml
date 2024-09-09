@@ -5,6 +5,9 @@ Item {
     width: 120
     height: 40
 
+    property bool isCharging: false
+    property real batteryPercentage: 0
+
     Rectangle {
         id: batteryBar
         width: batteryIndicator.width
@@ -13,9 +16,9 @@ Item {
 
         Rectangle {
             id: batteryFill
-            width: batteryChecker.batteryLevel / 100 * (parent.width - 6)
+            width: batteryPercentage / 100 * (parent.width - 6)
             height: parent.height - 6
-            color: batteryChecker.batteryLevel > 20 ? "lime" : "orangered"
+            color: batteryPercentage > 20 ? "lime" : "orangered"
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
             anchors.margins: 3
@@ -31,9 +34,9 @@ Item {
     }
 
     Text {
-        id: batteryLevelText
+        id: batteryPercentText
         anchors.centerIn: parent
-        text: batteryChecker.batteryLevel + '%'
+        text: isCharging ? "Charging..." : batteryPercentage + '%'
         color: "white"
         font.bold: true
     }

@@ -12,40 +12,23 @@
 class BatteryChecker : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(float busVoltage READ getBusVoltage) // Свойство для получения напряжения на шине
-    // Property for getting bus voltage
-    Q_PROPERTY(float shuntVoltage READ getShuntVoltage) // Свойство для получения напряжения на шунте
-    // Property for getting shunt voltage
-    Q_PROPERTY(float amper READ getAmper) // Свойство для получения значения ампеража
-    // Property for getting the amperage value
-    Q_PROPERTY(bool isCharge READ getIsCharge NOTIFY isChargeChanged) // Свойство для проверки состояния зарядки
-    // Property for checking the charging state
-    Q_PROPERTY(int busVoltagePercent READ getBusVoltagePercent) // Свойство для получения процента напряжения на шине
-    // Property for getting the bus voltage percentage
-
 public:
-    explicit BatteryChecker(QObject *parent = nullptr); // Конструктор класса
-    // Class constructor
-    ~BatteryChecker(); // Деструктор класса
-    // Class destructor
+    explicit BatteryChecker(QObject *parent = nullptr);
+    ~BatteryChecker();
 
     void startMonitoring(int interval = DEFAULT_INTERVAL_MS); // Метод для запуска мониторинга с заданным интервалом
     // Method to start monitoring with a specified interval
 
-    Q_INVOKABLE float getBusVoltage() const; // Метод для получения текущего напряжения на шине
-    // Method to get the current bus voltage
-    Q_INVOKABLE float getShuntVoltage() const; // Метод для получения текущего напряжения на шунте
-    // Method to get the current shunt voltage
-    Q_INVOKABLE float getAmper() const; // Метод для получения текущего ампеража
-    // Method to get the current amperage
-    Q_INVOKABLE bool getIsCharge() const; // Метод для проверки состояния зарядки
-    // Method to check the charging state
-    Q_INVOKABLE int getBusVoltagePercent() const; // Метод для получения процента напряжения на шине
-    // Method to get the bus voltage percentage
+    float getBusVoltage() const;
+    float getShuntVoltage() const;
+    float getAmper() const;
+    Q_INVOKABLE bool getIsCharging() const;
+    Q_INVOKABLE int getBusVoltagePercent() const;
 
 signals:
-    void isChargeChanged(); // Сигнал, который вызывается при изменении состояния зарядки
+    void chargingStateUpdated(bool isCharging); // Сигнал, который вызывается при изменении состояния зарядки
     // Signal emitted when the charging state changes
+    void batteryPercentageUpdated(int busVoltagePercent);
 
 private slots:
     void readBatteryData(); // Слот для чтения данных с батареи
@@ -68,7 +51,7 @@ private:
     // Variable for storing the current shunt voltage
     float amper; // Переменная для хранения текущего значения ампеража
     // Variable for storing the current amperage
-    bool isCharge; // Переменная для хранения состояния зарядки
+    bool isCharging; // Переменная для хранения состояния зарядки
     // Variable for storing the charging state
     int busVoltagePercent; // Переменная для хранения процента напряжения на шине
     // Variable for storing the bus voltage percentage
@@ -80,7 +63,7 @@ private:
 
     static constexpr float MIN_BUS_VOLTAGE = 9.65f; // Минимальное допустимое напряжение на шине (вольты)
     // Minimum allowable bus voltage (volts)
-    static constexpr float MAX_BUS_VOLTAGE = 11.5f; // Максимальное допустимое напряжение на шине (вольты)
+    static constexpr float MAX_BUS_VOLTAGE = 12.5f; // Максимальное допустимое напряжение на шине (вольты)
     // Maximum allowable bus voltage (volts)
     static constexpr float CHARGE_VOLTAGE_INCREMENT = 0.88f; // Прибавка к напряжению на шине при зарядке (вольты)
     // Voltage increment on the bus during charging (volts)

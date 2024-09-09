@@ -75,7 +75,7 @@ int16_t INA219Reader::readRegisterValueFromI2cDevice() const
 	unsigned char buffer[2];
 
 	if (read(this->fd, buffer, 2) != 2) {
-		throw ReadRegisterValueFromI2cDeviceFailException();
+        throw ReadRegisterValueFromI2cDeviceFailException();
 	}
     return static_cast<int16_t>((buffer[0] << 8) | buffer[1]);
 }
