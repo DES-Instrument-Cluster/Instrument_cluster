@@ -13,19 +13,15 @@ int main(int argc, char *argv[])
         QGuiApplication app(argc, argv);
         QQuickStyle::setStyle("Material");
         QQmlApplicationEngine engine;
-        BatteryChecker batteryChecker;
-        engine.rootContext()->setContextProperty("batteryChecker", &batteryChecker);
-        qmlRegisterType<BatteryChecker>("InstrumentCluster", 1, 0, "BatteryChecker");
-        batteryChecker.startMonitoring();
 
+        BatteryChecker batteryChecker;
         SpeedUpdateManager speedUpdateManager;
 
+        engine.rootContext()->setContextProperty("batteryChecker", &batteryChecker);
         engine.rootContext()->setContextProperty("speedUpdateManager", &speedUpdateManager);
-        qmlRegisterType<SpeedUpdateManager>("InstrumentCluster", 1, 0, "SpeedUpdateManager");
-
         engine.rootContext()->setContextProperty("filterManager", speedUpdateManager.getFilterManager());
-        qmlRegisterType<FilterManager>("InstrumentCluster", 1, 0, "SpeedUpdateManager");
 
+        batteryChecker.startMonitoring();
         speedUpdateManager.start();
 
         engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
@@ -33,7 +29,6 @@ int main(int argc, char *argv[])
         {
             return 1;
         }
-
         return app.exec();
     }
     catch (std::exception& e)

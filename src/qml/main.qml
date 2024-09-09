@@ -2,7 +2,6 @@ import QtQuick 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Window 2.15
-import InstrumentCluster 1.0
 
 ApplicationWindow {
     visible: true
@@ -13,7 +12,10 @@ ApplicationWindow {
 
     Component.onCompleted: {
         if (!speedUpdateManager) {
-            console.error("Failed to load SpeedUpdateManager");
+            console.error("Failed to load SpeedUpdateManager instance to QML.");
+        }
+        if (!batteryChecker) {
+            console.error("Failed to load BatteryChecker instance to QML.");
         }
     }
 
@@ -49,7 +51,19 @@ ApplicationWindow {
             anchors.right: parent.right
             anchors.topMargin: 10
             anchors.rightMargin: 20
+            isCharging: false
+            batteryPercentage: 0
+
         }
 
+        Connections {
+            target: batteryChecker
+            onBatteryPercentageUpdated: function(batteryPercentage) {
+                batteryIndicator.batteryPercentage = batteryPercentage;
+            }
+            onChargingStateUpdated: function(isCharging) {
+                batteryIndicator.isCharging = isCharging;
+            }
+        }
     }
 }

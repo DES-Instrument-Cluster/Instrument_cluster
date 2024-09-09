@@ -11,8 +11,8 @@ Item {
     property real animatedSpeed: 0
 
     // Numeric speed
-    readonly property string speedFont: "italic bold 30px Arial"
-    readonly property string unitFont: "italic 13px Arial"
+    readonly property string speedFont: "bold 30px sans-serif"
+    readonly property string unitFont: "13px sans-serif"
 
     // Speed gauge
     readonly property real gaugeStartAngle: 150
