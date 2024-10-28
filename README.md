@@ -65,7 +65,11 @@ Comment[en_US]=Start Instrument Cluster at startup
 Comment=Start Instrument Cluster at startup
 ```
 ## Result
+#### Display real-time speed and battery percentage
+![image](https://github.com/user-attachments/assets/d907358c-8378-414e-980e-308d59534e3e)
 
-## Conclusion
+#### Low battery percentage
+![image](https://github.com/user-attachments/assets/1daf3746-772a-4799-a34f-05d7a2b9ccd7)
 
-## Contributors
+#### Battery charging state
+![image](https://github.com/user-attachments/assets/f023f058-d071-40d0-8749-4d62701f8627)
